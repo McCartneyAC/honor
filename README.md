@@ -19,7 +19,7 @@ Ideally, this section will incorporate programming from `tidystats` package to o
 It should also include some easy to use graphical representation of equity data, e.g. a mosaic plot or repeated bar charts, to give an at-a-glance representation of equity outcomes. 
 
 #### Mosaic Plot Example 
-![Gifted Identification in Albemarle County](https://github.com/McCartneyAC/honor/blob/master/test_data/mosaic.png?raw=true | width = 100)
+![Gifted Identification in Albemarle County](https://github.com/McCartneyAC/honor/blob/master/test_data/mosaic.png?raw=true)
 
 ## Support Officer Data
 Additionally, support officer pool data can be input as well. This feature should enable both current pool and incoming pool data tracking abilities. These should be graph-able in some way, as well, beyond just pie charts (or perhaps a pie chart within a donut chart? I'll think about it). 
