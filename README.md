@@ -35,5 +35,38 @@ from VMH's capstone:
 #### RDCI
 >The RDCI “for a racial or cultural group is the difference between their gifted education composition and general education composition, expressed as a percentage of their general education composition” (Ford, 2014, p. 144). ...  It is “not adequate for determining what is unacceptable or possibly illegal/discriminatory underrepresentation; nor is it specific enough to determine goals for improving representation” (Ford, 2014, p. 145). 
 
+##### RDCI Example in R
+```r
+> RCDI<-function(groups,pop,sample){
++   # requires data input to be a list of a # of students for each race
++   # TODO: Rewrite as a tidy version allowing pipe operations.
++   pctgift<-pop / sum(pop)
++   pcttot <-sample / sum(sample)
++   z <- sample-pop
++   pctnon<-z / sum(z)
++   rcdi <- ((pctgift - pctnon ) / (pctnon)) * 100
++   rcdi <- round(rcdi, digits =2)
++   grps <- groups
++   mat <- as.data.frame(cbind(grps, rcdi))
++   return(mat)
++ }
+> albemarle
+         race division gifted
+1       asian      729    102
+2       black     1482     32
+3    hispanic     1824     40
+4 two or more      841     80
+5       white     9196   1114
+> RCDI(albemarle$race, albemarle$gifted, albemarle$division)
+         grps   rcdi
+1       asian  51.07
+2       black -79.51
+3    hispanic -79.18
+4 two or more  -2.38
+5       white     28
+```
+In this case, we would determine that Asian students and White students are overrepresented among gifted students in ACPS; whereas Black and Hispanic students are roughly equally under-represented in gifted education. Similar calculations can be done for racial groups to determine support officer representation, but more valuable is: 
+
+
 #### EI 
 >The EI should theoretically be the minimally accepted level of underrepresentation for each group because once the percentage of underrepresentation exceeds that designated threshold, it is beyond statistical chance, meaning policies and procedures may be discriminatory against CLD groups (Ford, 2014). 
