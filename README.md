@@ -57,13 +57,14 @@ from VMH's capstone:
 3    hispanic     1824     40
 4 two or more      841     80
 5       white     9196   1114
-> RCDI(albemarle$race, albemarle$gifted, albemarle$division)
-         grps  rcdi
-1       asian  4.97
-2       black -7.73
-3    hispanic  -7.7
-4 two or more -0.23
-5       white  2.72
+> RCDI(albemarle$race, albemarle$division, albemarle$gifted)
+         grps   rcdi
+1       asian  51.07
+2       black -79.51
+3    hispanic -79.18
+4 two or more  -2.38
+5       white     28
+> 
 ```
 In this case, we would determine that Asian students and White students are overrepresented among gifted students in ACPS; whereas Black and Hispanic students are roughly equally under-represented in gifted education. Similar calculations can be done for racial groups to determine support officer representation, but more valuable is: 
 
