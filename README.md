@@ -26,6 +26,8 @@ To measure the representativeness of the Support Officer Pool, this application 
 
 RDCI is a measure of difference between the race of a population (all students) and the population of a subgroup (gifted students; Honor support officers) to determine if the subgroup is representatively drawn from the population. EI generates a figure which represents the minimum number of students that *should* be in the subgroup in order for the subgroup to be representative of the population, based on the principle that representativeness means two populations are within 80% agreement with each other on demographic breakdowns. 
 
+Both of these metrics will require accurate data on the student body of UVA as a population in order to calculate. This is our second major data need (behind the original data files being held on Newcomb Fourth Floor). 
+
 from VMH's capstone: 
 #### RDCI
 >The RDCI “for a racial or cultural group is the difference between their gifted education composition and general education composition, expressed as a percentage of their general education composition” (Ford, 2014, p. 144). ...  It is “not adequate for determining what is unacceptable or possibly illegal/discriminatory underrepresentation; nor is it specific enough to determine goals for improving representation” (Ford, 2014, p. 145). 
