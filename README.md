@@ -71,3 +71,36 @@ In this case, we would determine that Asian students and White students are over
 
 #### EI 
 >The EI should theoretically be the minimally accepted level of underrepresentation for each group because once the percentage of underrepresentation exceeds that designated threshold, it is beyond statistical chance, meaning policies and procedures may be discriminatory against CLD groups (Ford, 2014). 
+
+##### EI Example
+```r 
+> EI<-function(groups,pop,sample){
++   # requires data input to be a list of a # of students for each race
++   # TODO: Rewrite as a tidy version to allow for piping over data frame restructuring
++   pcttot<-pop / sum(pop)
++   pctgift <-sample / sum(sample)
++   z <- pop-sample
++   pctnon<-(z / sum(z))*100
++   part1<- pctnon*0.20
++   part2<- pctnon-part1
++   Number_Needed<-round(part2, digits = 0)
++   grps <- groups
++   mat <- as.data.frame(cbind(grps, Number_Needed))
++   return(mat)
++ }
+> albemarle
+         race division gifted
+1       asian      729    102
+2       black     1482     32
+3    hispanic     1824     40
+4 two or more      841     80
+5       white     9196   1114
+> EI(albemarle$race, albemarle$division, albemarle$gifted)
+         grps Number_Needed
+1       asian             4
+2       black             9
+3    hispanic            11
+4 two or more             5
+5       white            51
+> 
+```
