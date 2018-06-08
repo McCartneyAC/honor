@@ -78,14 +78,10 @@ In this case, we would determine that Asian students and White students are over
 +   # requires data input to be a list of a # of students for each race
 +   # TODO: Rewrite as a tidy version to allow for piping over data frame restructuring
 +   pcttot<-pop / sum(pop)
-+   pctgift <-sample / sum(sample)
-+   z <- pop-sample
-+   pctnon<-(z / sum(z))*100
-+   part1<- pctnon*0.20
-+   part2<- pctnon-part1
++   target<-pcttot*0.80
++   part2 <- target*sum(sample)
 +   Number_Needed<-round(part2, digits = 0)
-+   grps <- groups
-+   mat <- as.data.frame(cbind(grps, Number_Needed))
++   mat <- as.data.frame(cbind(groups, Number_Needed))
 +   return(mat)
 + }
 > albemarle
@@ -96,11 +92,10 @@ In this case, we would determine that Asian students and White students are over
 4 two or more      841     80
 5       white     9196   1114
 > EI(albemarle$race, albemarle$division, albemarle$gifted)
-         grps Number_Needed
-1       asian             4
-2       black             9
-3    hispanic            11
-4 two or more             5
-5       white            51
-> 
+       groups Number_Needed
+1       asian            57
+2       black           115
+3    hispanic           142
+4 two or more            65
+5       white           715
 ```
