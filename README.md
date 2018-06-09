@@ -1,6 +1,8 @@
 # `honor`
 A shiny dashboard app for processing Honor Case and Support Officer Statistics
 
+A version of this app in development can be found [here.](https://acm9q.shinyapps.io/honor/)
+
 ## Overview
 This application project seeks to establish an onling dashboard which will allow future members of the UVA Honor Committee to track data on (1) case processing statistics such as time-to-resolution and equity of outcomes by demographic groups and (2) support officer pool statistics to ensure equity of representation within the pool. 
 
