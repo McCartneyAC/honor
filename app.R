@@ -1,14 +1,15 @@
-# setwd("C:\\Users\\Andrew\\Desktop\\honor-master")
+
 library(shiny)
 library(shinydashboard)
 library(shinythemes)
 library(readxl)
+library(ggalluvial)
 library(tidyverse) # TIDYVERSE ALWAYS COMES LAST.
 
 colors<-c("blue", "black", "purple", "green", "red", "yellow") # I am a child
 
-# source(metrics.R)
-# source(graph_functions.R)
+source("metrics.R")
+source("graph_functions.R")
 
 ui <- dashboardPage(skin = sample(colors, 1), # and this amuses me. 
   dashboardHeader(title = "UVAHonor Data Tracking"),
@@ -28,15 +29,17 @@ ui <- dashboardPage(skin = sample(colors, 1), # and this amuses me.
       tags$hr()
       # semi-collapse:
       # https://antoineguillot.wordpress.com/2017/02/21/three-r-shiny-tricks-to-make-your-shiny-app-shines-23-semi-collapsible-sidebar/?utm_content=buffer88135&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer
-    ),
+    ), #Sidebar Menu
+    
+    
     ## Part two:
     #### input for dataset (support officers)
     fileInput("support", "Upload SO Data"),
     #### input for dataset (Case Processing)
     fileInput("cases", "Upload Case Data"), 
     tags$hr(), 
-    tags$img(src="")
-  ),
+    tags$img(src="") #Honor Logo Here? If we want it? 
+  ), #Dashboard Sidebar
 
   
   dashboardBody(
@@ -58,7 +61,7 @@ ui <- dashboardPage(skin = sample(colors, 1), # and this amuses me.
                   title = "Metrics",
                   # The id lets us use input$tabset1 on the server to find the current tab
                   id = "tabMetrics", height = "500px",
-                  tabPanel("RDCI", "Relative Difference In Composition Index: How over-represented and under-represented are racial groups?"),
+                  tabPanel("RCDI", "Relative Difference In Composition Index: How over-represented and under-represented are racial groups?"),
                   tabPanel("EI", "Equity Index: How many are needed from each group to satisfy 80% equity?"),
                   tabPanel("Data", "data must be structured as follows....")
                 ), # Metrics
@@ -78,16 +81,18 @@ ui <- dashboardPage(skin = sample(colors, 1), # and this amuses me.
                 tabBox(width = 12, height = "500px",
                   tabPanel("Time-to-Resolution", width = 12, 
                            tabBox(width = 12,
-                             tabPanel("valueBox median TTR"), # Median accounts for CMD outliers.
+                             tabPanel("Median TTR",
+                                      valueBoxOutput("median_ttr")
+                                      ), # Median accounts for CMD outliers.
                              tabPanel("TTR by Student Choice:"),
-                             tabPanel("Survival Analysis"),
-                             tabPanel("Alluvial Diagram")
+                             tabPanel("Survival Analysis"), # perhaps break these up into a second tabbox within the panel? 
+                             tabPanel("Alluvial Diagram")   # as is the case with Support Officer Metrics... For cleanliness. 
                              ) #tabBox
                            ), # tabPanel (TTR)
                   tabPanel("Equity", width=12,
                            tabBox(width = 12,
                              tabPanel("Equity Indices"),
-                             tabPanel("RDCI"),
+                             tabPanel("RCDI"),
                              tabPanel("EI")
                              ) #tabBox
                            )#tabPanel - Equity
@@ -105,9 +110,17 @@ server <- function(input, output) {
   cases<-reactive({readxl(input$cases)})
   support<-reactive({readxl(input$support)})
   
-  # rdci<-RDCI()
-  # ei<-EI()
   
+  # ei<-EI()
+  # rcdi<-RCDI()
+
+  output$median_ttr<-renderValueBox({
+    valueBox(
+      "35 days", "Median TTR",
+      icon = icon("calendar"),
+      color = "yellow"
+    )
+  })
 
   
   
