@@ -1,12 +1,16 @@
+# setwd("C:\\Users\\Andrew\\Desktop\\honor-master")
 library(shiny)
 library(shinydashboard)
 library(shinythemes)
 library(readxl)
 library(tidyverse) # TIDYVERSE ALWAYS COMES LAST.
 
+colors<-c("blue", "black", "purple", "green", "red", "yellow") # I am a child
 
+# source(metrics.R)
+# source(graph_functions.R)
 
-ui <- dashboardPage(skin = "yellow",
+ui <- dashboardPage(skin = sample(colors, 1), # and this amuses me. 
   dashboardHeader(title = "UVAHonor Data Tracking"),
   
 
@@ -24,11 +28,6 @@ ui <- dashboardPage(skin = "yellow",
       tags$hr()
       # semi-collapse:
       # https://antoineguillot.wordpress.com/2017/02/21/three-r-shiny-tricks-to-make-your-shiny-app-shines-23-semi-collapsible-sidebar/?utm_content=buffer88135&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer
-      ## CSS documentation: 
-      # .sidebar-collapse .left-side, .sidebar-collapse .main-sidebar{
-      #   transform: translate(0,0);
-      #   width: 40px;
-      # }
     ),
     ## Part two:
     #### input for dataset (support officers)
@@ -38,19 +37,10 @@ ui <- dashboardPage(skin = "yellow",
     tags$hr(), 
     tags$img(src="")
   ),
-  # tags$script("$(document).on('click', '.sidebar-toggle',function () {
-  #           Shiny.onInputChange('SideBar_col_react', Math.random())
-  #             });"),
 
   
   dashboardBody(
-    ## TABBED
-    ## PAGES
-    ## FOR
-    ## VARIOUS
-    ## METRICS
-    ## AND
-    ## FIGURES
+
     tabItems(
       tabItem(tabName = "home",
               h2("Home"),
@@ -111,33 +101,7 @@ server <- function(input, output) {
   # rdci<-RDCI()
   # ei<-EI()
   
-  # semi collapse:
-  # vals=reactiveValues()
-  # vals$collapsed=FALSE
-  # observeEvent(input$SideBar_col_react,
-  #              { vals$collapsed=!vals$collapsed }
-  # )
-  
-#   output$Semi_collapsible_sidebar=renderMenu({
-#     if (vals$collapsed)
-#       sidebarMenu(
-#         menuItem(NULL, tabName = "dashboard", icon = icon("dashboard")),
-#         menuItem(NULL, icon = icon("th"), tabName = "widgets"),
-#         menuItem(NULL, icon = icon("bar-chart-o"),
-#                  menuSubItem(span(class="collapsed_text","Sub-item 1"), tabName = "subitem1"),
-#                  menuSubItem(span(class="collapsed_text","Sub-item 2"), tabName = "subitem2")
-#         ))
-#     else
-#       sidebarMenu(
-#         menuItem("Dashboard", tabName = "dashboard", icon = icon("dashboard")),
-#         menuItem("Widgets", icon = icon("th"), tabName = "widgets", badgeLabel = "new",
-#                  badgeColor = "green"),
-#         menuItem("Charts", icon = icon("bar-chart-o"),
-#                  menuSubItem("Sub-item 1", tabName = "subitem1"),
-#                  menuSubItem("Sub-item 2", tabName = "subitem2")
-#         ))
-#   })
-# })
+
   
   
 }
