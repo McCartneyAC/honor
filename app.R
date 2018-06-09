@@ -76,14 +76,21 @@ ui <- dashboardPage(skin = sample(colors, 1), # and this amuses me.
               h2("Case Processing Analyses"),
               fluidRow(  
                 tabBox(width = 12, height = "500px",
-                  tabPanel("Time-to-Resolution", width = 11, 
-                           tabBox(
-                             tabPanel("valueBox mean TTR"),
+                  tabPanel("Time-to-Resolution", width = 12, 
+                           tabBox(width = 12,
+                             tabPanel("valueBox median TTR"), # Median accounts for CMD outliers.
                              tabPanel("TTR by Student Choice:"),
-                             tabPanel("Survival Analysis")
+                             tabPanel("Survival Analysis"),
+                             tabPanel("Alluvial Diagram")
                              ) #tabBox
                            ), # tabPanel (TTR)
-                  tabPanel("Equity", "Case Equity Statistics Go Here")
+                  tabPanel("Equity", width=12,
+                           tabBox(width = 12,
+                             tabPanel("Equity Indices"),
+                             tabPanel("RDCI"),
+                             tabPanel("EI")
+                             ) #tabBox
+                           )#tabPanel - Equity
                 ) #tabBox
               ) # fluidRow
               ) #Cases Tab
