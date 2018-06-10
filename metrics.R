@@ -9,8 +9,7 @@ RCDI<-function(groups,pop,sample){
   pctnon<-z / sum(z)
   rcdi <- ((pctgift - pctnon ) / (pctnon)) * 100
   rcdi <- round(rcdi, digits =2)
-  grps <- groups
-  mat <- as.data.frame(cbind(grps, rcdi))
+  mat <- as.data.frame(cbind(groups, rcdi))
   return(mat)
 }
 
