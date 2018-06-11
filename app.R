@@ -46,7 +46,7 @@ ui <- dashboardPage(skin = sample(colors, 1), # and this amuses me.
                       tabItems(
                         tabItem(tabName = "home",
                                 h2("Home"),
-                                box(width = 10,
+                                box(width = 12,
                                   tags$h3("Analyze Honor Committee Data"),
                                   tags$p("This app exists to provide a dashboard for the analysis of Honor Committee Data. All case processing data are strictly confidential; therefore, it is not feasible to regularly transfer them from Executive Board members to data tracking subcommittee members for analysis. The goal of this environment is to enable exec members to upload data from OCP and to output analyses, metrics, and graphs with ease."),
                                   tags$p("To use, upload Support Officer or Case Processing data in the navigation pane on the left, then select which group you wish to analyze. Individual tabs may offer different metrics, so follow the instructions as you run your analysis. "),
