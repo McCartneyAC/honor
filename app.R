@@ -7,8 +7,8 @@ library(tidyverse) # TIDYVERSE ALWAYS COMES LAST.
 
 colors<-c("blue", "black", "purple", "green", "red", "yellow") # I am a child
 
-# source("metrics.R")
-# source("graph_functions.R")
+source("metrics.R")
+source("graph_functions.R")
 
 ui <- dashboardPage(skin = sample(colors, 1), # and this amuses me. 
                     dashboardHeader(title = "UVAHonor Data Tracking"),
