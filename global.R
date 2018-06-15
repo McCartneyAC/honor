@@ -2,10 +2,14 @@ library(shiny)
 library(shinydashboard)
 library(shinythemes)
 library(readxl)
+library(ggplot2)
 library(ggalluvial)
-library(tidyverse) # TIDYVERSE ALWAYS COMES LAST.
+library(ggmosaic)
+library(ggthemes)
+library(tidyverse) # TIDYVERSE ALWAYS COMES LAST. (Otherwise you may generate errors due to masked functions)
 
-colors<-c("blue", "black", "purple", "green", "red", "yellow") 
+colors<-c("blue", "black", "purple", "green", "red", "yellow") # shinyDashboard available colors.
+                                                               # app will choose one of these at random to display as header bar color.
 
 uvapal<-c("#E57200", #orange
           "#232D4B", #navy
