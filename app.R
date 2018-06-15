@@ -1,3 +1,6 @@
+source("global.R")
+source("metrics.R")
+source("graph_functions.R")
 ui <- dashboardPage(skin = sample(colors, 1), # and this amuses me. 
                     dashboardHeader(title = "UVAHonor Data Tracking"),
                     
