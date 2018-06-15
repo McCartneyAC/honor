@@ -6,6 +6,7 @@ library(ggplot2)
 library(ggalluvial)
 library(ggmosaic)
 library(ggthemes)
+library(lubridate)
 library(tidyverse) # TIDYVERSE ALWAYS COMES LAST. (Otherwise you may generate errors due to masked functions)
 
 colors<-c("blue", "black", "purple", "green", "red", "yellow") # shinyDashboard available colors.
