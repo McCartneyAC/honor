@@ -23,3 +23,24 @@ EI<-function(groups,pop,sample){
   mat <- as.data.frame(cbind(groups, Number_Needed))
   return(mat)
 }
+
+median_ttr<-function(df, starts, ends, group_var = NULL) {
+  # this is on the right track for a tidyeval version of median ttr,
+  # but it needs to be tested and I *don't* think that the pipe structure
+  # will actually create a ttr variable that can be operated upon by median
+  # later in the function. 
+  # TODO: read more about tidy eval; test this function
+  require(lubridate)
+  require(dplyr)
+  if (group_var == NULL){
+    df %>% 
+      summarize(ttr = as.duration(ymd(.data$ends)-ymd(.data$starts)))
+  } else {
+    group_var<-enquo(group_var)
+    df %>% 
+      filter(.data$group = !!group_var) %>% 
+      summarize(ttr = as.duration(ymd(.data$ends)-ymd(.data$starts)))
+  }
+  med_ttr<-median(ttr)
+  return(med_ttr)
+}
