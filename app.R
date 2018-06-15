@@ -1,7 +1,7 @@
 source("global.R")
 source("metrics.R")
 source("graph_functions.R")
-ui <- dashboardPage(skin = sample(colors, 1), # and this amuses me. 
+ui <- dashboardPage(skin = sample(colors, 1), # When one of these colors finally speaks to me, I'll settle on it. 
                     dashboardHeader(title = "UVAHonor Data Tracking"),
                     
                     
@@ -31,7 +31,7 @@ ui <- dashboardPage(skin = sample(colors, 1), # and this amuses me.
                       #### input for dataset (Case Processing)
                       fileInput("cases", "Upload Case Data"), 
                       tags$hr(), 
-                      tags$img(src="https://github.com/McCartneyAC/honor/blob/master/files/image.png", width = "99%") #Honor Logo Here? If we want it? 
+                      tags$img(src="https://github.com/McCartneyAC/honor/blob/master/files/image.png", width = "99%")  
                     ), #Dashboard Sidebar
                     
                     
@@ -156,7 +156,9 @@ server <- function(input, output) {
   
   output$median_ttr<-renderValueBox({
     valueBox(
-      "35 days", "Median TTR",
+      "35 days", "Median TTR", # upon receipt of data structure, this will change to reflect some version of: 
+                               # median(daysbetween(cases$end_date, cases$start_date))
+                               # (but that will be a function in metrics.R by then)
       icon = icon("calendar"),
       color = "yellow"
     )
