@@ -4,7 +4,7 @@ A shiny dashboard app for processing Honor Case and Support Officer Statistics
 A version of this app in development can be found [here.](https://acm9q.shinyapps.io/honor/)
 
 ## Overview
-This application project seeks to establish an onling dashboard which will allow future members of the UVA Honor Committee to track data on (1) case processing statistics such as time-to-resolution and equity of outcomes by demographic groups and (2) support officer pool statistics to ensure equity of representation within the pool. 
+This application project seeks to establish an online dashboard which will allow future members of the UVA Honor Committee to track data on (1) case processing statistics such as time-to-resolution and equity of outcomes by demographic groups and (2) support officer pool statistics to ensure equity of representation within the pool. 
 
 Because all Honor data are deeply confidential [(see FERPA)](https://www2.ed.gov/policy/gen/guid/fpco/ferpa/index.html?), no student data of any kind will be included in this application. The functionality comes from allowing a user who has access to those data to input them into the application, run any metrics or analyses, and then leave the app. All user data should be scrubbed from `shinyapps.io` after the user finishes her analysis.  
 
