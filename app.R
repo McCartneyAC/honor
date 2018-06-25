@@ -31,7 +31,7 @@ ui <- dashboardPage(skin = sample(colors, 1), # When one of these colors finally
                       #### input for dataset (Case Processing)
                       fileInput("cases", "Upload Case Data"), 
                       tags$hr(), 
-                      tags$img(src="https://github.com/McCartneyAC/honor/blob/master/files/image.png", width = "99%")  
+                      tags$img(src="https://github.com/McCartneyAC/honor/blob/master/files/image.jpg", width = "99%")  
                     ), #Dashboard Sidebar
                     
                     
