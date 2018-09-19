@@ -15,10 +15,10 @@ ui <- dashboardPage(skin = sample(colors, 1), # When one of these colors finally
                         menuItem("Support Officers", tabName = "support_tab", icon = icon("address-card")),
                         #### Support Officers
                         menuItem("Cases", tabName = "cases_tab", icon = icon("id-card")), #icon("user-graduate")
-                        #### James Hay, Jr. 
-                        menuItem("Reflect", tabName = "reflect", icon = icon("leaf")), # icon("glasses") 
                         #### Day Calculator 
                         menuItem("Calculate Days", tabName = "calcdays", icon = icon("calendar")),
+                        #### James Hay, Jr. 
+                        menuItem("Reflect", tabName = "reflect", icon = icon("leaf")), # icon("glasses") 
                         tags$hr()
                         # semi-collapse:
                         # https://antoineguillot.wordpress.com/2017/02/21/three-r-shiny-tricks-to-make-your-shiny-app-shines-23-semi-collapsible-sidebar/?utm_content=buffer88135&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer
