@@ -7,7 +7,7 @@ library(ggalluvial)
 library(ggmosaic)
 library(ggthemes)
 library(lubridate)
-library(tidyverse) # TIDYVERSE ALWAYS COMES LAST. (Otherwise you may generate errors due to masked functions)
+library(dplyr) # subbing dplyr for whole tidyverse to speed up upload times to shinyapps.io
 
 colors<-c("blue", "black", "purple", "green", "red", "yellow") # shinyDashboard available colors.
                                                                # app will choose one of these at random to display as header bar color.
