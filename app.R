@@ -17,8 +17,8 @@ ui <- dashboardPage(skin = sample(colors, 1), # When one of these colors finally
                         menuItem("Cases", tabName = "cases_tab", icon = icon("id-card")), #icon("user-graduate")
                         #### James Hay, Jr. 
                         menuItem("Reflect", tabName = "reflect", icon = icon("leaf")), # icon("glasses") 
-                        #### Other? 
-                        # menuItem("other", tabName = "other", icon = icon("ot-her")),
+                        #### Day Calculator 
+                        menuItem("Calculate Days", tabName = "calcdays", icon = icon("calendar")),
                         tags$hr()
                         # semi-collapse:
                         # https://antoineguillot.wordpress.com/2017/02/21/three-r-shiny-tricks-to-make-your-shiny-app-shines-23-semi-collapsible-sidebar/?utm_content=buffer88135&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer
@@ -49,11 +49,23 @@ ui <- dashboardPage(skin = sample(colors, 1), # When one of these colors finally
                                 ) #box
                         ), # Home Tab
                         
-                        
-                        
-                        
-                        
-                        
+                        tabItem(tabName = "calcdays",
+                                h2("Calculate Date Ranges with UVA Holidays"),
+                                box(
+                                  dateRangeInput("dates", h2("Date range"),
+                                                 min = "2016-08-23" ,
+                                                 max = "2022-05-13"),
+                                  textOutput(outputId = "dateRangeText"),
+                                  tags$br(),
+                                  tags$br(),
+                                  tags$h3("About"),
+                                  tags$p("This application calculates the number of days (inlcuding weekends) between two selected dates.
+                                         Times when UVA is not in session (summer and winter breaks between semesters) are excluded, as are
+                                         Spring Break and Thanksgiving break."),
+                                  tags$p("Timelines are currently limited to Fall 2016 - Spring 2022 semesters.")
+                                )
+                                ), # calc days tab
+                 
                         
                         tabItem(tabName = "support_tab",
                                 h2("Support Officers Analyses"),
@@ -77,8 +89,6 @@ ui <- dashboardPage(skin = sample(colors, 1), # When one of these colors finally
                                   
                                 ) #fluidRow
                         ), # Support Officer Tab
-                        
-                        
                         
                         
                         
@@ -106,11 +116,6 @@ ui <- dashboardPage(skin = sample(colors, 1), # When one of these colors finally
                                   ) #tabBox
                                 ) # fluidRow
                         ), #Cases Tab
-                        
-                        
-                        
-                        
-                        
                         
                         
                         
@@ -163,6 +168,90 @@ server <- function(input, output) {
       color = "yellow"
     )
   })
+  
+  # Holidays List -------------------------------------------------------------------------------
+  # 2016-2017
+  thanksgiving= c(  "2016-11-23", "2016-11-24", "2016-11-25", "2016-11-26", "2016-11-27")
+  spring_break= c(  "2016-03-04", "2016-03-05", "2016-03-06", "2016-03-07", "2016-03-08", "2016-03-09", "2016-03-10", "2016-03-11", "2016-03-12")
+  h2016 <-c(thanksgiving, spring_break )
+  # 2017-2018
+  thanksgiving= c(  "2017-11-22", "2017-11-23", "2017-11-24", "2017-11-25", "2017-11-26" )
+  spring_break= c(  "2018-03-03", "2018-03-04", "2018-03-05", "2018-03-06", "2018-03-07", "2018-03-08", "2018-03-09", "2018-03-10", "2018-03-11")
+  h2017 <-c(thanksgiving, spring_break )
+  # 2018-2019
+  thanksgiving= c(  "2018-11-21", "2018-11-22", "2018-11-23", "2018-11-24", "2018-11-25")
+  spring_break= c(  "2019-03-09", "2019-03-10", "2019-03-11", "2019-03-12", "2019-03-13", "2019-03-14", "2019-03-15", "2019-03-16", "2019-03-17")
+  h2018 <-c(thanksgiving, spring_break )
+  # 2019-2020
+  thanksgiving= c(  "2019-11-27", "2019-11-28", "2019-11-29", "2019-11-30", "2019-12-01")
+  spring_break= c(  "2020-03-07", "2020-03-08", "2020-03-09", "2020-03-10", "2020-03-11", "2020-03-12", "2020-03-13", "2020-03-14", "2020-03-15")
+  h2019 <-c(thanksgiving, spring_break )
+  # 2020-2021
+  thanksgiving= c(  "2020-11-25", "2020-11-26", "2020-11-27", "2020-11-28", "2020-11-29")
+  spring_break= c(  "2020-03-06", "2020-03-07", "2020-03-08", "2020-03-09", "2020-03-10", "2020-03-11", "2020-03-12", "2020-03-13", "2020-03-14")
+  h2020 <-c(thanksgiving, spring_break )
+  # 2021-2022
+  thanksgiving= c(  "2021-11-24", "2021-11-25", "2021-11-26", "2021-11-27", "2021-11-28")
+  spring_break= c(  "2022-03-05", "2022-03-06", "2022-03-07", "2022-03-08", "2022-03-09", "2022-03-10", "2022-03-11", "2022-03-12", "2022-03-13")
+  h2021 <-c(thanksgiving, spring_break )
+  # full list: 
+  holidays<-c(h2016,h2017,h2018,h2019,h2020,h2021)
+  holidays<-as.Date(holidays, "%Y-%m-%d")
+  holidays
+  
+  # Semesters List --------------------------------------------------------------------------------
+  fall2016    <- seq(as.Date("2016-08-23"), as.Date("2016-12-16"), by="days")
+  spring2017  <- seq(as.Date("2017-01-18"), as.Date("2017-05-12"), by="days")
+  fall2017    <- seq(as.Date("2017-08-22"), as.Date("2017-12-15"), by="days")
+  spring2018  <- seq(as.Date("2018-01-17"), as.Date("2018-05-11"), by="days")
+  fall2018    <- seq(as.Date("2018-08-28"), as.Date("2018-12-18"), by="days")
+  spring2019  <- seq(as.Date("2019-01-14"), as.Date("2019-05-10"), by="days")
+  fall2019    <- seq(as.Date("2019-08-27"), as.Date("2019-12-17"), by="days")
+  spring2020  <- seq(as.Date("2020-01-13"), as.Date("2020-05-08"), by="days")
+  fall2020    <- seq(as.Date("2020-08-25"), as.Date("2020-12-18"), by="days")
+  spring2021  <- seq(as.Date("2021-01-21"), as.Date("2021-05-14"), by="days")
+  fall2021    <- seq(as.Date("2021-08-24"), as.Date("2021-12-17"), by="days")
+  spring2022  <- seq(as.Date("2022-01-19"), as.Date("2022-05-13"), by="days")
+  semesters <-c(fall2016, spring2017, fall2017, spring2018, fall2018, spring2019, fall2019, spring2020, fall2020, spring2021, fall2021, spring2022)
+  semesters<-as.Date(semesters, "%Y-%m-%d")
+  
+  
+  
+  
+  
+  # calculations --------------- 
+  a <- reactive({input$dates[1]})
+  b <- reactive({input$dates[2]})
+  
+  date_range <- reactive({seq.Date(a(), b(),1)})
+  
+  tspan <- reactive({
+    length(date_range()[date_range() %in% semesters & !date_range() %in% holidays])
+  })
+  output$dateRangeText  <- renderText({
+    paste("Number of Days Between", 
+          paste(as.character(input$dates), collapse = " to "), 
+          "excluding school holidays is: ",
+          tspan()
+    )
+  })
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   
